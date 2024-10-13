@@ -1,0 +1,15 @@
+.selector-for-some-widget {
+    box-sizing: content-box;
+  }
+
+  .my-custom-carousel {
+    width: 800px; /* Set the desired width */
+    margin: 0 auto; /* This will center it horizontally */
+}
+
+  .carousel-item img {
+    width: 20%; /* Adjust this value */
+    height: 20%; /* Adjust this value */
+    object-fit: cover;
+    margin: 0 auto; /* Center the image */
+}
