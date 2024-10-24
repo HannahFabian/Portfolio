@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "node": "^22.10.0",
+    "star-wars-quotes": "^1.0.2",
+    "superheroes": "^4.0.0",
+    "supervillains": "^4.0.0"
+  },
+  "name": "07_basicnode",
+  "version": "1.0.0",
+  "main": "saludos.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
