@@ -11,4 +11,3 @@ console.log(randomVillain());
 const battleMessage = `${randomHero()} battles against ${randomVillain()} in an epic battle! Who will win?`;
 console.log(battleMessage);
 
-//Aqui falta leer el archivo de texto para revelar el secreto.
