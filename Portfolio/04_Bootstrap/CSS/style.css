@@ -1,0 +1,33 @@
+.selector-for-some-widget {
+    box-sizing: content-box;
+  }
+
+  .my-custom-carousel {
+    width: 800px; /* Set the desired width */
+    margin: 0 auto; /* This will center it horizontally */
+}
+
+  .carousel-item img {
+    width: 20%; /* Adjust this value */
+    height: 20%; /* Adjust this value */
+    object-fit: cover;
+    margin: 0 auto; /* Center the image */
+}
+
+.border-success {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-success-rgb), var(--bs-border-opacity)) !important;
+}
+
+hr{
+  border: 2px solid azure;
+  border-style: double;
+}
+
+body{
+  background-color: rgb(31, 33, 34);
+} 
+.letter{
+  color:azure;
+  font-family: 'Courier New', Courier, monospace;
+}
