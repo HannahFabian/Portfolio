@@ -6,37 +6,32 @@ app.use(express.urlencoded({ extended: true }));
 let user = "";
 let posts = [];
 
-// Set EJS as the view engine
 app.engine("ejs", require("ejs").renderFile);
 app.set("view engine", "ejs");
 
-// Serve static files from the "public" directory
 app.use(express.static("public"));
 
-// Serve the form on the root endpoint
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/html/index.html'); // Cambia esta ruta según donde tengas tu index.html
+    res.sendFile(__dirname + '/public/html/index.html'); 
 });
 
-// Handle GET request to /login
 app.get('/login', (req, res) => {
-    const name = req.query.name; // Get name from query parameters
+    const name = req.query.name; 
     if (name) {
         user = name;
-        res.render('test', { name: user , method : 'GET' }); // Saludo para GET
+        res.render('test', { name: user , method : 'GET' }); 
     } else {
-        res.send('Please provide a name in the query parameter.'); // Mensaje de error
+        res.send('Please provide a name in the query parameter.'); 
     }
 });
 
-// Handle POST request to /login
 app.post('/login', (req, res) => {
-    const name = req.body.name; // Get name from body
+    const name = req.body.name; 
     if (name) {
         user = name;
-        res.render('test', { name: user, method : 'POST'}); // Saludo para POST
+        res.render('test', { name: user, method : 'POST'}); 
     } else {
-        res.send('Please provide a name in the body of the request.'); // Mensaje de error
+        res.send('Please provide a name in the body of the request.'); 
     }
 });
 
@@ -53,32 +48,30 @@ app.post('/blog', (req, res) => {
     res.render('home', {name: user , posts : posts});
 });
 
-// Ruta para ver una publicación específica
 app.get('/post/:id', (req, res) => {
-    const postId = parseInt(req.params.id); // Obtener el ID de la URL
-    const post = posts.find(p => p.id === postId); // Buscar la publicación por ID
+    const postId = parseInt(req.params.id); 
+    const post = posts.find(p => p.id === postId); 
     if (post) {
-        res.render('post', { post }); // Renderizar la vista post.ejs con la publicación encontrada
+        res.render('post', { post }); 
     } else {
-        res.send('Post not found.'); // Mensaje si la publicación no se encuentra
+        res.send('Post not found.'); 
     }
 });
 
 app.post('/delete-post/:id', (req, res) => {
-    const postId = parseInt(req.params.id); // Obtener el ID del post a eliminar
+    const postId = parseInt(req.params.id);
     posts = posts.filter(post => post.id !== postId);
     res.redirect('/blog');
 });
 
 app.get('/post', (req, res) => {
-    res.render('post'); // Esto renderiza post.ejs
+    res.render('post'); 
 });
 
 app.get('/blog', (req, res) => {
-    res.render('home', { name: user, posts: posts }); // Renderiza la página de inicio del blog con los posts
+    res.render('home', { name: user, posts: posts }); 
 });
 
-// Start the server
 app.listen(4000, () => {
     console.log("Server is listening on port 4000");
 });
