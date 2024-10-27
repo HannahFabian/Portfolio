@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express test</title>
+</head>
+
+<body>
+    <h1> Hello, Dear User. </h1>
+        <form action="/greet" method="get" id="greetForm">
+            Register:
+            <input type="text" name="name" id="name" placeholder="Name">
+            <input type="submit" value="go next">
+        </form>
+        
+
+        <div id="mainGreetings"></div>
+        <script>
+            document.getElementById("greetForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+                const name = document.getElementById("name").value;
+            
+                const mensaje = document.getElementById("mensaje");
+                mainGreetings.textContent = `Thank you ${name}! Welcome!`; // Set the greeting message
+                
+            });
+        </script>
+
+        <h2> To - Do List </h2>
+        <form id="taskForm" action="/task" method="POST">
+            <input type="text" id="task" name="task" required placeholder="New task">
+            <button type="submit">Add Task</button>
+        </form>
+        <ul id="taskList"></ul>
+
+        <script>
+            document.getElementById('taskForm').onsubmit = (event) => {
+                event.preventDefault(); // Evitar el envío predeterminado
+                const taskInput = document.getElementById('task');
+                const task = taskInput.value; // Obtener la tarea
+    
+                // Crear un nuevo elemento de lista para la tarea
+                const listItem = document.createElement('li');
+    
+                // Crear el texto de la tarea
+                listItem.innerText = task;
+    
+                // Crear botón de eliminar
+                const deleteButton = document.createElement('button');
+                deleteButton.innerText = 'Delete';
+                // Agregar el índice al botón de eliminar
+                deleteButton.onclick = async () => {
+                    const index = Array.from(document.getElementById('taskList').children).indexOf(listItem);
+                    await fetch('/delete-task', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `index=${index}`, // Enviar el índice correcto
+                    });
+                    listItem.remove(); // Eliminar de la lista visual
+                };
+    
+                // Crear botones de mover hacia arriba y abajo
+                const upButton = document.createElement('button');
+                upButton.innerText = '↑';
+                upButton.onclick = () => moveTaskUp(listItem);
+    
+                const downButton = document.createElement('button');
+                downButton.innerText = '↓';
+                downButton.onclick = () => moveTaskDown(listItem);
+    
+                // Agregar botones y tarea al elemento de lista
+                listItem.appendChild(upButton);
+                listItem.appendChild(downButton);
+                listItem.appendChild(deleteButton);
+                document.getElementById('taskList').appendChild(listItem);
+    
+                // Limpiar el campo de entrada
+                taskInput.value = '';
+            };
+    
+            // Funciones para mover tareas
+            function moveTaskUp(taskItem) {
+                const previous = taskItem.previousElementSibling;
+                if (previous) {
+                    taskItem.parentNode.insertBefore(taskItem, previous);
+                }
+            }
+    
+            function moveTaskDown(taskItem) {
+                const next = taskItem.nextElementSibling;
+                if (next) {
+                    taskItem.parentNode.insertBefore(next, taskItem);
+                }
+            }
+                
+        </script>
+        
+</body>
+
+</html>

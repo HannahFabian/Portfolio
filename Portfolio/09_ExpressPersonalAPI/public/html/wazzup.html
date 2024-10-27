@@ -1,0 +1,27 @@
+<!-- public/wazzup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express Test</title>
+</head>
+<body>
+    <h1>Success!!</h1>
+    <h3 id="greeting">Wazzup!</h3>
+    <br />
+    <a href="/">Go back</a>
+
+    <script>
+        // Obtener el parámetro de nombre desde la URL
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name');
+        
+        // Actualizar el saludo si el nombre está presente
+        if (name) {
+            document.getElementById('greeting').textContent = `Wazzup ${name}!`;
+        }
+    </script>
+</body>
+</html>
