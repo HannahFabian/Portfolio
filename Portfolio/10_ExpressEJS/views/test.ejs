@@ -1,0 +1,15 @@
+<%- include("partials/header"); -%>
+
+<h1>Hello, <%= name %>!</h1> 
+<p>Welcome to our brand-new EJS section! But, what does this mean? 
+    Your name now is being displayed inside a new file named "test.ejs"!
+    Feel free to stare at this page endlessly hours if you want. :)
+</p>
+
+<% if (method === 'GET') { %>
+    <p>You accessed this page using a GET request. Take a look at the URL, your name's there :O, which is not secure.</p>
+<% } else if (method === 'POST') { %>
+    <p>You accessed this page using a POST request. Take a look at the URL, your name isn't there, you are secured :)</p>
+<% } %>
+
+<%- include("partials/footer"); -%>
