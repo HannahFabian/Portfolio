@@ -24,7 +24,7 @@
                 const name = document.getElementById("name").value;
             
                 const mensaje = document.getElementById("mensaje");
-                mainGreetings.textContent = `Thank you ${name}! Welcome!`; // Set the greeting message
+                mainGreetings.textContent = `Thank you ${name}! Welcome!`; 
                 
             });
         </script>
@@ -38,20 +38,17 @@
 
         <script>
             document.getElementById('taskForm').onsubmit = (event) => {
-                event.preventDefault(); // Evitar el envío predeterminado
+                event.preventDefault(); 
                 const taskInput = document.getElementById('task');
-                const task = taskInput.value; // Obtener la tarea
+                const task = taskInput.value; 
     
-                // Crear un nuevo elemento de lista para la tarea
                 const listItem = document.createElement('li');
     
-                // Crear el texto de la tarea
                 listItem.innerText = task;
     
-                // Crear botón de eliminar
                 const deleteButton = document.createElement('button');
                 deleteButton.innerText = 'Delete';
-                // Agregar el índice al botón de eliminar
+               
                 deleteButton.onclick = async () => {
                     const index = Array.from(document.getElementById('taskList').children).indexOf(listItem);
                     await fetch('/delete-task', {
@@ -59,12 +56,11 @@
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
-                        body: `index=${index}`, // Enviar el índice correcto
+                        body: `index=${index}`, 
                     });
-                    listItem.remove(); // Eliminar de la lista visual
+                    listItem.remove(); 
                 };
     
-                // Crear botones de mover hacia arriba y abajo
                 const upButton = document.createElement('button');
                 upButton.innerText = '↑';
                 upButton.onclick = () => moveTaskUp(listItem);
@@ -73,17 +69,14 @@
                 downButton.innerText = '↓';
                 downButton.onclick = () => moveTaskDown(listItem);
     
-                // Agregar botones y tarea al elemento de lista
                 listItem.appendChild(upButton);
                 listItem.appendChild(downButton);
                 listItem.appendChild(deleteButton);
                 document.getElementById('taskList').appendChild(listItem);
     
-                // Limpiar el campo de entrada
                 taskInput.value = '';
             };
     
-            // Funciones para mover tareas
             function moveTaskUp(taskItem) {
                 const previous = taskItem.previousElementSibling;
                 if (previous) {
